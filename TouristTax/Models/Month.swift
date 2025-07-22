@@ -7,24 +7,32 @@
 
 import Foundation
 
-enum MonthName: String, CaseIterable {
-    case January
-    case February
-    case March
-    case April
-    case May
-    case June
-    case July
-    case August
-    case September
+struct YearMonth: Hashable {
+    let year: Int
+    let month: Int
 }
 
-struct Month: Identifiable {
-    var id: UUID
-    var name: MonthName
-    var year: Date
-    var bookings: [Booking]
-    var totalTouristTax: Double {
-        return bookings.reduce(0) { $0 + $1.totalTouristTax }
+// Helper struct to represent a month
+struct MonthSection: Identifiable {
+    let id = UUID()
+    let year: Int
+    let month: Int
+    let bookings: [Booking]
+    var totalGuests: Int {
+        bookings.reduce(0) { $0 + $1.numberOfGuests }
+    }
+    var totalOverNightStays: Int {
+        bookings.reduce(0) { $0 + $1.totalOvernightStays }
+    }
+    var totalTouristTaxt: Double {
+        bookings.reduce(0) { $0 + $1.totalTouristTax }
+    }
+    
+    var dateString: String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMMM yyyy"
+        let components = DateComponents(year: year, month: month)
+        let date = Calendar.current.date(from: components) ?? Date()
+        return formatter.string(from: date)
     }
 }

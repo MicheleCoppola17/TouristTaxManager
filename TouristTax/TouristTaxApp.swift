@@ -12,7 +12,7 @@ import SwiftData
 struct TouristTaxApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            BookingsByMonthView()
         }
         .modelContainer(for: Booking.self)
     }
