@@ -27,17 +27,23 @@ struct BookingsView: View {
         NavigationStack {
             List(bookings) { booking in
                 VStack(alignment: .leading) {
-                    Text(booking.date, style: .date)
-                        .padding(.vertical)
-                        .bold()
                     HStack {
-                        Label("\(booking.numberOfGuests)", systemImage: "person.3")
+                        Text(booking.date, style: .date)
+                            .bold()
                         Spacer()
                         Text(booking.totalTouristTax, format: .currency(code: "EUR"))
                             .foregroundStyle(.secondary)
                     }
-                    .padding()
+                    .padding(.bottom)
+                    HStack {
+                        Label("\(booking.numberOfGuests)", systemImage: "person.3")
+                        Spacer()
+                        Label("\(booking.numberOfNights)", systemImage: "powersleep")
+                    }
+                    .foregroundStyle(.secondary)
+                    .padding(.horizontal)
                 }
+                .padding()
                 .swipeActions(edge: .trailing) {
                     Button(role: .destructive) {
                         modelContext.delete(booking)

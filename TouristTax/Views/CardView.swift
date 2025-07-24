@@ -24,6 +24,7 @@ struct CardView: View {
                 Spacer()
                 Label("\(month.totalOverNightStays)", systemImage: "bed.double")
             }
+            .padding(.horizontal)
             .foregroundStyle(.secondary)
         }
         .padding()
@@ -32,5 +33,5 @@ struct CardView: View {
 }
 
 #Preview() {
-    CardView(month: MonthSection(year: 2025, month: 5, bookings: [Booking(date: Date(timeIntervalSinceNow: -60 * 60 * 24 * 60), numberOfGuests: 3, numberOfNights: 6), Booking(date: Date(timeIntervalSinceNow: -60 * 60 * 24 * 70), numberOfGuests: 4, numberOfNights: 2)]))
+    CardView(month: MonthSection(year: 2025, month: 5, bookings: [Booking(date: Date(timeIntervalSinceNow: -60 * 60 * 24 * 60), touristTaxValue: 4.5, numberOfGuests: 3, numberOfNights: 6), Booking(date: Date(timeIntervalSinceNow: -60 * 60 * 24 * 70), touristTaxValue: 4.5, numberOfGuests: 4, numberOfNights: 2)]))
 }

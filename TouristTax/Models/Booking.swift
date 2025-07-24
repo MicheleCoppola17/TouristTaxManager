@@ -22,7 +22,7 @@ class Booking: Identifiable {
         return Double(numberOfNights * numberOfGuests) * touristTaxValue
     }
     
-    init(id: UUID = UUID(), date: Date, touristTaxValue: Double = 4.5, numberOfGuests: Int, numberOfNights: Int) {
+    init(id: UUID = UUID(), date: Date, touristTaxValue: Double, numberOfGuests: Int, numberOfNights: Int) {
         self.id = id
         self.date = date
         self.touristTaxValue = touristTaxValue

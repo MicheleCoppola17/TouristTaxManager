@@ -23,7 +23,7 @@ struct NewBookingView: View {
         if let booking {
             bookingToEdit = booking
         } else {
-            bookingToEdit = Booking(date: .now, numberOfGuests: 2, numberOfNights: 3)
+            bookingToEdit = Booking(date: .now, touristTaxValue: 4.5, numberOfGuests: 2, numberOfNights: 3)
         }
         
         self.booking = bookingToEdit
@@ -46,6 +46,16 @@ struct NewBookingView: View {
                     ForEach(1..<10, id: \.self) { number in
                         Text("\(number)").tag(number)
                     }
+                }
+            }
+            
+            Section(header: Text("Tourist Tax")) {
+                HStack {
+                    Slider(value: $touristTaxValue, in: 0...10, step: 0.5) {
+                        Text("Tourist Tax: \(touristTaxValue)")
+                    }
+                    
+                    Text(touristTaxValue, format: .currency(code: "EUR"))
                 }
             }
         }
