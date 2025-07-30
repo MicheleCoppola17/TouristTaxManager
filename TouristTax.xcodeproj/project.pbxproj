@@ -6,17 +6,26 @@
 	objectVersion = 77;
 	objects = {
 
-/* Begin PBXBuildFile section */
-		A50182302E2FD5B5001AD9C4 /* CoreXLSX in Frameworks */ = {isa = PBXBuildFile; productRef = A501822F2E2FD5B5001AD9C4 /* CoreXLSX */; };
-/* End PBXBuildFile section */
-
 /* Begin PBXFileReference section */
 		A546D9802E2D142A00B81DBC /* TouristTax.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TouristTax.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		A56D59AC2E3A7DD300A79136 /* Exceptions for "TouristTax" folder in "TouristTax" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = A546D97F2E2D142A00B81DBC /* TouristTax */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		A546D9822E2D142A00B81DBC /* TouristTax */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				A56D59AC2E3A7DD300A79136 /* Exceptions for "TouristTax" folder in "TouristTax" target */,
+			);
 			path = TouristTax;
 			sourceTree = "<group>";
 		};
@@ -27,7 +36,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A50182302E2FD5B5001AD9C4 /* CoreXLSX in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,7 +78,6 @@
 			);
 			name = TouristTax;
 			packageProductDependencies = (
-				A501822F2E2FD5B5001AD9C4 /* CoreXLSX */,
 			);
 			productName = TouristTax;
 			productReference = A546D9802E2D142A00B81DBC /* TouristTax.app */;
@@ -101,7 +108,6 @@
 			mainGroup = A546D9772E2D142A00B81DBC;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				A501822E2E2FD5B5001AD9C4 /* XCRemoteSwiftPackageReference "CoreXLSX" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = A546D9812E2D142A00B81DBC /* Products */;
@@ -265,6 +271,7 @@
 				DEVELOPMENT_TEAM = 2XSHXS4594;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TouristTax/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -297,6 +304,7 @@
 				DEVELOPMENT_TEAM = 2XSHXS4594;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TouristTax/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -341,25 +349,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		A501822E2E2FD5B5001AD9C4 /* XCRemoteSwiftPackageReference "CoreXLSX" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/CoreOffice/CoreXLSX.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.14.2;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		A501822F2E2FD5B5001AD9C4 /* CoreXLSX */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = A501822E2E2FD5B5001AD9C4 /* XCRemoteSwiftPackageReference "CoreXLSX" */;
-			productName = CoreXLSX;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = A546D9782E2D142A00B81DBC /* Project object */;
 }

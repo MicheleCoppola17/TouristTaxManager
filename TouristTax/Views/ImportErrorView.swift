@@ -8,11 +8,52 @@
 import SwiftUI
 
 struct ImportErrorView: View {
+    let error: String
+    let onRetry: () -> Void
+    let onDismiss: () -> Void
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationStack {
+            VStack(spacing: 20) {
+                Image(systemName: "exclamationmark.triangle.fill")
+                    .font(.system(size: 60))
+                    .foregroundStyle(.orange)
+                
+                Text("Import Failed")
+                    .font(.title2)
+                    .fontWeight(.semibold)
+                
+                Text(error)
+                    .multilineTextAlignment(.center)
+                    .foregroundStyle(.secondary)
+                    .padding(.horizontal)
+                
+                VStack(spacing: 12) {
+                    Button("Try Again") {
+                        onRetry()
+                    }
+                    .buttonStyle(.borderedProminent)
+                    
+                    Button("Cancel") {
+                        onDismiss()
+                    }
+                    .buttonStyle(.bordered)
+                }
+                .padding(.top)
+            }
+            .padding()
+            .navigationTitle("Import Error")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button("Done") {
+                        onDismiss()
+                    }
+                }
+            }
+        }
     }
 }
-
 #Preview {
-    ImportErrorView()
+    ImportErrorView(error: "Error", onRetry: { }, onDismiss: { })
 }
