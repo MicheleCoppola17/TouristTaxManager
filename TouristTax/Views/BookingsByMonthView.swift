@@ -96,6 +96,7 @@ struct BookingsByMonthView: View {
             Task {
                 if let bookings = await importService.uploadExcelFile(at: url) {
                     await MainActor.run {
+                        print("Imported bookings: \(importedBookings.count)")
                         importedBookings = bookings
                         showingImportPreview = true
                     }

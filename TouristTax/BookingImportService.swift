@@ -75,7 +75,7 @@ class BookingImportService {
             // Create body
             var body = Data()
             
-            // Add file data
+            // Add file data with the exact parameter name expected by FastAPI
             body.append("--\(boundary)\r\n".data(using: .utf8)!)
             body.append("Content-Disposition: form-data; name=\"file\"; filename=\"\(fileName)\"\r\n".data(using: .utf8)!)
             body.append("Content-Type: application/vnd.ms-excel\r\n\r\n".data(using: .utf8)!)
@@ -83,6 +83,9 @@ class BookingImportService {
             body.append("\r\n--\(boundary)--\r\n".data(using: .utf8)!)
             
             request.httpBody = body
+            
+            print("Request body size: \(body.count) bytes")
+            print("Boundary: \(boundary)")
             
             // Make request
             let (data, response) = try await URLSession.shared.data(for: request)
