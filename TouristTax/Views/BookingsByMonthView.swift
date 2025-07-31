@@ -4,14 +4,14 @@ import UniformTypeIdentifiers
 
 struct BookingsByMonthView: View {
     @Query(sort: \Booking.date) private var bookings: [Booking]
-    
     @State private var isPresentingNewBookingView: Bool = false
     @State private var importing: Bool = false
     @State private var importService = BookingImportService()
     @State private var showingImportPreview = false
     @State private var importedBookings: [ImportedBooking] = []
     @State private var showingImportError = false
-
+    @State private var importCompleted = false // New state variable
+    
     // Group bookings by year and month
     private var groupedBookings: [MonthSection] {
         let grouped = Dictionary(grouping: bookings) { (booking) -> YearMonth in
@@ -28,7 +28,7 @@ struct BookingsByMonthView: View {
             }
         }
     }
-
+    
     var body: some View {
         NavigationStack {
             List(groupedBookings) { section in
@@ -39,13 +39,16 @@ struct BookingsByMonthView: View {
             .navigationTitle("Months")
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button(action: { isPresentingNewBookingView = true }) {
+                    Button(action: {
+                        isPresentingNewBookingView = true
+                    }) {
                         Image(systemName: "plus")
                     }
                 }
-                
                 ToolbarItem(placement: .bottomBar) {
-                    Button(action: { importing = true }) {
+                    Button(action: {
+                        importing = true
+                    }) {
                         HStack {
                             if importService.isLoading {
                                 ProgressView()
@@ -80,6 +83,12 @@ struct BookingsByMonthView: View {
             } message: {
                 Text(importService.errorMessage ?? "An unknown error occurred")
             }
+            .onChange(of: importCompleted) { _, completed in
+                if completed && !importedBookings.isEmpty {
+                    showingImportPreview = true
+                    importCompleted = false // Reset for next import
+                }
+            }
             .overlay {
                 if groupedBookings.isEmpty {
                     ContentUnavailableView("Start adding bookings", systemImage: "plus")
@@ -96,9 +105,8 @@ struct BookingsByMonthView: View {
             Task {
                 if let bookings = await importService.uploadExcelFile(at: url) {
                     await MainActor.run {
-                        print("Imported bookings: \(importedBookings.count)")
                         importedBookings = bookings
-                        showingImportPreview = true
+                        importCompleted = true
                     }
                 } else {
                     await MainActor.run {
@@ -113,6 +121,7 @@ struct BookingsByMonthView: View {
         }
     }
 }
+
 #Preview(traits: .bookingSampleData) {
     BookingsByMonthView()
 }
