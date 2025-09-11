@@ -10,7 +10,7 @@ struct BookingsByMonthView: View {
     @State private var showingImportPreview = false
     @State private var importedBookings: [ImportedBooking] = []
     @State private var showingImportError = false
-    @State private var importCompleted = false // New state variable
+    @State private var importCompleted = false
     
     // Group bookings by year and month
     private var groupedBookings: [MonthSection] {
@@ -81,7 +81,7 @@ struct BookingsByMonthView: View {
             .alert("Import Error", isPresented: $showingImportError) {
                 Button("OK") { }
             } message: {
-                Text(importService.errorMessage ?? "An unknown error occurred")
+                Text("Please check the format of your XLS file and try again.")
             }
             .onChange(of: importCompleted) { _, completed in
                 if completed && !importedBookings.isEmpty {
