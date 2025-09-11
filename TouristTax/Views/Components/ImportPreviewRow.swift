@@ -45,7 +45,7 @@ struct ImportPreviewRow: View {
                     Spacer()
                     Text(totalTax, format: .currency(code: "EUR"))
                         .foregroundStyle(.secondary)
-                        .font(.subheadline)
+                        .font(.headline.weight(.regular))
                 }
                 
                 HStack {
@@ -54,7 +54,6 @@ struct ImportPreviewRow: View {
                     Label("\(booking.numberOfNights)", systemImage: "powersleep")
                 }
                 .foregroundStyle(.secondary)
-                .font(.caption)
             }
         }
         .padding(.vertical, 4)
@@ -64,4 +63,5 @@ struct ImportPreviewRow: View {
 
 #Preview {
     ImportPreviewRow(booking: ImportedBooking(date: "2025-07-20", numberOfGuests: 5, numberOfNights: 3), touristTax: 4.5, isSelected: true, onToggle: { })
+        .padding()
 }

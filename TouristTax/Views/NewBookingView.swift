@@ -43,7 +43,7 @@ struct NewBookingView: View {
                     }
                 }
                 Picker("Number of Nights", selection: $numberOfNights) {
-                    ForEach(1..<10, id: \.self) { number in
+                    ForEach(1..<16, id: \.self) { number in
                         Text("\(number)").tag(number)
                     }
                 }

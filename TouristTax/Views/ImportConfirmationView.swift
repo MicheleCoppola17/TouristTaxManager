@@ -29,15 +29,17 @@ struct ImportConfirmationView: View {
                 // Header with tourist tax setting
                 VStack {
                     HStack {
-                        Text("Tourist Tax")
+                        Text("Tourist Tax:")
                             .font(.headline)
+                        
                         Spacer()
-                        Text(touristTaxValue, format: .currency(code: "EUR"))
-                            .foregroundStyle(.secondary)
+                        
+                        Stepper(value: $touristTaxValue, in: 0...10, step: 0.5) {
+                            Text(touristTaxValue, format: .currency(code: "EUR"))
+                                .foregroundStyle(.secondary)
+                        }
                     }
-                    
-                    Slider(value: $touristTaxValue, in: 0...10, step: 0.5)
-                        .tint(.blue)
+
                 }
                 .padding()
                 .background(Color(.systemGray6))
