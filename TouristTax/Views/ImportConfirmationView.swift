@@ -9,7 +9,8 @@ import SwiftUI
 import SwiftData
 
 struct ImportConfirmationView: View {
-    let importedBookings: [ImportedBooking]
+    @State private var bookingsToConfirm: [ImportedBooking]
+    
     @Environment(\.dismiss) private var dismiss
     @Environment(\.modelContext) private var modelContext
     
@@ -18,7 +19,7 @@ struct ImportConfirmationView: View {
     @State private var isImporting = false
     
     init(importedBookings: [ImportedBooking]) {
-        self.importedBookings = importedBookings
+        self._bookingsToConfirm = State(initialValue: importedBookings)
         // Select all bookings by default
         self._selectedBookings = State(initialValue: Set(importedBookings.map { $0.id }))
     }
@@ -26,7 +27,6 @@ struct ImportConfirmationView: View {
     var body: some View {
         NavigationStack {
             VStack(spacing: 0) {
-                // Header with tourist tax setting
                 VStack {
                     HStack {
                         Text("Tourist Tax:")
@@ -39,17 +39,16 @@ struct ImportConfirmationView: View {
                                 .foregroundStyle(.secondary)
                         }
                     }
-
                 }
                 .padding()
                 .background(Color(.systemGray6))
                 
-                // Preview list
                 List {
+                    // Use $bookingsToConfirm to pass bindings to the rows
                     Section {
-                        ForEach(importedBookings) { booking in
+                        ForEach($bookingsToConfirm) { $booking in
                             ImportPreviewRow(
-                                booking: booking,
+                                booking: $booking,
                                 touristTax: touristTaxValue,
                                 isSelected: selectedBookings.contains(booking.id)
                             ) {
@@ -58,13 +57,13 @@ struct ImportConfirmationView: View {
                         }
                     } header: {
                         HStack {
-                            Text("Preview (\(importedBookings.count) bookings)")
+                            Text("Preview (\(bookingsToConfirm.count) bookings)")
                             Spacer()
-                            Button(selectedBookings.count == importedBookings.count ? "Deselect All" : "Select All") {
-                                if selectedBookings.count == importedBookings.count {
+                            Button(selectedBookings.count == bookingsToConfirm.count ? "Deselect All" : "Select All") {
+                                if selectedBookings.count == bookingsToConfirm.count {
                                     selectedBookings.removeAll()
                                 } else {
-                                    selectedBookings = Set(importedBookings.map { $0.id })
+                                    selectedBookings = Set(bookingsToConfirm.map { $0.id })
                                 }
                             }
                             .font(.caption)
@@ -77,9 +76,7 @@ struct ImportConfirmationView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
-                    Button("Cancel") {
-                        dismiss()
-                    }
+                    Button("Cancel") { dismiss() }
                 }
                 
                 ToolbarItem(placement: .topBarTrailing) {
@@ -116,7 +113,7 @@ struct ImportConfirmationView: View {
         
         Task {
             await MainActor.run {
-                let bookingsToImport = importedBookings
+                let bookingsToImport = bookingsToConfirm
                     .filter { selectedBookings.contains($0.id) }
                     .compactMap { $0.toBooking(touristTaxValue: touristTaxValue) }
                 

@@ -10,8 +10,8 @@ import Foundation
 struct ImportedBooking: Codable, Identifiable {
     let id = UUID()
     let date: String
-    let numberOfGuests: Int
-    let numberOfNights: Int
+    var numberOfGuests: Int
+    var numberOfNights: Int
     
     // Convert to Booking model
     func toBooking(touristTaxValue: Double = 4.5) -> Booking? {
