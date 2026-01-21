@@ -45,30 +45,30 @@ struct BookingsByMonthView: View {
                         Image(systemName: "plus")
                     }
                 }
-                ToolbarItem(placement: .bottomBar) {
-                    Button(action: {
-                        importing = true
-                    }) {
-                        HStack {
-                            if importService.isLoading {
-                                ProgressView()
-                                    .scaleEffect(0.8)
-                            } else {
-                                Image(systemName: "doc.badge.plus")
-                            }
-                            Text("Importa da XLS")
-                        }
-                        .padding()
-                    }
-                    .disabled(importService.isLoading)
-                    .fileImporter(
-                        isPresented: $importing,
-                        allowedContentTypes: [.spreadsheet],
-                        allowsMultipleSelection: false
-                    ) { result in
-                        handleFileImport(result)
-                    }
-                }
+//                ToolbarItem(placement: .bottomBar) {
+//                    Button(action: {
+//                        importing = true
+//                    }) {
+//                        HStack {
+//                            if importService.isLoading {
+//                                ProgressView()
+//                                    .scaleEffect(0.8)
+//                            } else {
+//                                Image(systemName: "doc.badge.plus")
+//                            }
+//                            Text("Importa da XLS")
+//                        }
+//                        .padding()
+//                    }
+//                    .disabled(importService.isLoading)
+//                    .fileImporter(
+//                        isPresented: $importing,
+//                        allowedContentTypes: [.spreadsheet],
+//                        allowsMultipleSelection: false
+//                    ) { result in
+//                        handleFileImport(result)
+//                    }
+//                }
             }
             .sheet(isPresented: $isPresentingNewBookingView) {
                 NavigationStack {
