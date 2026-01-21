@@ -52,27 +52,27 @@ struct ImportPreviewRow: View {
                 // --- 3. Editable Fields in a Grid for perfect alignment ---
                 Grid(alignment: .leading, horizontalSpacing: 20) {
                     GridRow(alignment: .center) {
-                        Text("Guests:")
+                        Text("Ospiti:")
                         
                         HStack {
                             Text("\(booking.numberOfGuests)")
                                 // A fixed width prevents the layout from shifting when numbers change
                                 .frame(width: 35, alignment: .leading)
                             Spacer()
-                            Stepper("Guests", value: $booking.numberOfGuests, in: 1...20)
+                            Stepper("Ospiti", value: $booking.numberOfGuests, in: 1...20)
                                 .labelsHidden()
                         }
                         .gridColumnAlignment(.trailing) // Align this whole cell to the right
                     }
                     
                     GridRow(alignment: .center) {
-                        Text("Nights:")
+                        Text("Notti:")
                         
                         HStack {
                             Text("\(booking.numberOfNights)")
                                 .frame(width: 35, alignment: .leading)
                             Spacer()
-                            Stepper("Nights", value: $booking.numberOfNights, in: 1...30)
+                            Stepper("Notti", value: $booking.numberOfNights, in: 1...30)
                                 .labelsHidden()
                         }
                         .gridColumnAlignment(.trailing)

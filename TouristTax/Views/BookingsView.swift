@@ -48,11 +48,11 @@ struct BookingsView: View {
                     Button(role: .destructive) {
                         modelContext.delete(booking)
                     } label: {
-                        Label("Delete", systemImage: "trash")
+                        Label("Elimina", systemImage: "trash")
                     }
                 }
             }
-            .navigationTitle("Month's Details")
+            .navigationTitle("Dettagli del Mese")
             .foregroundStyle(.primary)
         }
     }

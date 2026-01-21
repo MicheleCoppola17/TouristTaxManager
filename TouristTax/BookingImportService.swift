@@ -25,7 +25,7 @@ class BookingImportService {
         do {
             // Start accessing security-scoped resource
             guard url.startAccessingSecurityScopedResource() else {
-                errorMessage = "Unable to access the selected file"
+                errorMessage = "Impossibile accedere al file selezionato"
                 return nil
             }
             

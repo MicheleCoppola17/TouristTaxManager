@@ -35,41 +35,41 @@ struct NewBookingView: View {
     
     var body: some View {
         Form {
-            Section(header: Text("Booking Info")) {
-                DatePicker("Check-In Date", selection: $date, displayedComponents: .date)
-                Picker("Number of Guests", selection: $numberOfGuests) {
+            Section(header: Text("Informazioni Prenotazione")) {
+                DatePicker("Data Check-In", selection: $date, displayedComponents: .date)
+                Picker("Numero di Ospiti", selection: $numberOfGuests) {
                     ForEach(1..<10, id: \.self) { number in
                         Text("\(number)").tag(number)
                     }
                 }
-                Picker("Number of Nights", selection: $numberOfNights) {
+                Picker("Numero di Notti", selection: $numberOfNights) {
                     ForEach(1..<16, id: \.self) { number in
                         Text("\(number)").tag(number)
                     }
                 }
             }
             
-            Section(header: Text("Tourist Tax")) {
+            Section(header: Text("Tassa di Soggiorno")) {
                 HStack {
                     Slider(value: $touristTaxValue, in: 0...10, step: 0.5) {
-                        Text("Tourist Tax: \(touristTaxValue)")
+                        Text("Tassa di Soggiorno: \(touristTaxValue)")
                     }
                     
                     Text(touristTaxValue, format: .currency(code: "EUR"))
                 }
             }
         }
-        .navigationTitle("New Booking")
+        .navigationTitle("Nuova Prenotazione")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
-                Button("Cancel") {
+                Button("Annulla") {
                     dismiss()
                 }
             }
             
             ToolbarItem(placement: .topBarTrailing) {
-                Button("Done") {
+                Button("Fatto") {
                     saveEdits()
                     dismiss()
                 }

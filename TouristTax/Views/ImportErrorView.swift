@@ -19,7 +19,7 @@ struct ImportErrorView: View {
                     .font(.system(size: 60))
                     .foregroundStyle(.orange)
                 
-                Text("Import Failed")
+                Text("Importazione Fallita")
                     .font(.title2)
                     .fontWeight(.semibold)
                 
@@ -29,12 +29,12 @@ struct ImportErrorView: View {
                     .padding(.horizontal)
                 
                 VStack(spacing: 12) {
-                    Button("Try Again") {
+                    Button("Riprova") {
                         onRetry()
                     }
                     .buttonStyle(.borderedProminent)
                     
-                    Button("Cancel") {
+                    Button("Annulla") {
                         onDismiss()
                     }
                     .buttonStyle(.bordered)
@@ -42,11 +42,11 @@ struct ImportErrorView: View {
                 .padding(.top)
             }
             .padding()
-            .navigationTitle("Import Error")
+            .navigationTitle("Errore Importazione")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button("Done") {
+                    Button("Fatto") {
                         onDismiss()
                     }
                 }
@@ -55,5 +55,5 @@ struct ImportErrorView: View {
     }
 }
 #Preview {
-    ImportErrorView(error: "Error", onRetry: { }, onDismiss: { })
+    ImportErrorView(error: "Errore", onRetry: { }, onDismiss: { })
 }

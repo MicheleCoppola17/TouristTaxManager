@@ -36,7 +36,7 @@ struct BookingsByMonthView: View {
                     CardView(month: section)
                 }
             }
-            .navigationTitle("Months")
+            .navigationTitle("Mesi")
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button(action: {
@@ -56,7 +56,7 @@ struct BookingsByMonthView: View {
                             } else {
                                 Image(systemName: "doc.badge.plus")
                             }
-                            Text("Import from XLS")
+                            Text("Importa da XLS")
                         }
                         .padding()
                     }
@@ -78,10 +78,10 @@ struct BookingsByMonthView: View {
             .sheet(isPresented: $showingImportPreview) {
                 ImportConfirmationView(importedBookings: importedBookings)
             }
-            .alert("Import Error", isPresented: $showingImportError) {
+            .alert("Errore durante l'importazione", isPresented: $showingImportError) {
                 Button("OK") { }
             } message: {
-                Text("Please check the format of your XLS file and try again.")
+                Text("Controlla che il formato del file sia XLS e riprova.")
             }
             .onChange(of: importCompleted) { _, completed in
                 if completed && !importedBookings.isEmpty {
@@ -91,7 +91,7 @@ struct BookingsByMonthView: View {
             }
             .overlay {
                 if groupedBookings.isEmpty {
-                    ContentUnavailableView("Start adding bookings", systemImage: "plus")
+                    ContentUnavailableView("Inizia ad aggiungere le prenotazioni", systemImage: "plus")
                 }
             }
         }

@@ -29,7 +29,7 @@ struct ImportConfirmationView: View {
             VStack(spacing: 0) {
                 VStack {
                     HStack {
-                        Text("Tourist Tax:")
+                        Text("Tassa di Soggiorno:")
                             .font(.headline)
                         
                         Spacer()
@@ -57,9 +57,9 @@ struct ImportConfirmationView: View {
                         }
                     } header: {
                         HStack {
-                            Text("Preview (\(bookingsToConfirm.count) bookings)")
+                            Text("(\(bookingsToConfirm.count) prenotazioni)")
                             Spacer()
-                            Button(selectedBookings.count == bookingsToConfirm.count ? "Deselect All" : "Select All") {
+                            Button(selectedBookings.count == bookingsToConfirm.count ? "Deseleziona Tutte" : "Seleziona Tutte") {
                                 if selectedBookings.count == bookingsToConfirm.count {
                                     selectedBookings.removeAll()
                                 } else {
@@ -72,15 +72,15 @@ struct ImportConfirmationView: View {
                     }
                 }
             }
-            .navigationTitle("Import Bookings")
+            .navigationTitle("Importa Prenotazioni")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
-                    Button("Cancel") { dismiss() }
+                    Button("Annulla") { dismiss() }
                 }
                 
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button("Import") {
+                    Button("Importa") {
                         importSelectedBookings()
                     }
                     .disabled(selectedBookings.isEmpty || isImporting)
@@ -91,7 +91,7 @@ struct ImportConfirmationView: View {
                     Color.black.opacity(0.3)
                         .ignoresSafeArea()
                         .overlay {
-                            ProgressView("Importing bookings...")
+                            ProgressView("Importando le prenotazioni...")
                                 .padding()
                                 .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 12))
                         }
